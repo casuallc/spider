@@ -1,0 +1,5 @@
+package com.qing.analysis.spider.parse;
+
+public abstract class JSONParser {
+
+}
