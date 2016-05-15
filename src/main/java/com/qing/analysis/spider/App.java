@@ -46,6 +46,11 @@ public class App implements OnResponseListener {
 	static List<String> lines = new ArrayList<>();
 	
 	public static void main(String[] args) throws Exception {
+		if(args != null && args.length > 1) {
+			mid = Long.valueOf(args[0]);
+		} else {
+			return;
+		}
 		App main = new App();
 		main.addParser(new ParserAdapter() {
 			@Override
