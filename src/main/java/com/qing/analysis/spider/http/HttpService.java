@@ -62,34 +62,34 @@ public class HttpService {
 	}
 
 	public HttpService() {
-		HttpClientBuilder builder = HttpClientBuilder.create();
-		CookieStore cookieStore = new AcCookieStore();
-		builder.setDefaultCookieStore(cookieStore);
-
-		SSLContext sslContext = null;
-		try {
-			sslContext = new SSLContextBuilder().loadTrustMaterial(new TrustStrategy() {
-
-				@Override
-				public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-					return false;
-				}
-			}).loadKeyMaterial(KeyStore.getInstance("RSA"), new char[] { 1 }).build();
-			builder.setSSLContext(sslContext);
-			// builder.setSSLSocketFactory(fac);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		httpClient = builder.build();
-		// httpClient = HttpClients.createDefault();
+//		HttpClientBuilder builder = HttpClientBuilder.create();
+//		CookieStore cookieStore = new AcCookieStore();
+//		builder.setDefaultCookieStore(cookieStore);
+//
+//		SSLContext sslContext = null;
+//		try {
+//			sslContext = new SSLContextBuilder().loadTrustMaterial(new TrustStrategy() {
+//
+//				@Override
+//				public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+//					return false;
+//				}
+//			}).loadKeyMaterial(KeyStore.getInstance("RSA"), new char[] { 1 }).build();
+//			builder.setSSLContext(sslContext);
+//			// builder.setSSLSocketFactory(fac);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		httpClient = builder.build();
+		 httpClient = HttpClients.createDefault();
 		//
 
 		executor = Executors.newFixedThreadPool(threadCount);
 	}
 
 	public void setHeader(HttpRequestBase request) {
-		// request.setHeader("Host", "space.bilibili.com");
+		request.setHeader("Host", "space.bilibili.com");
 		request.setHeader("User-Agent", USER_AGENT[random.nextInt(USER_AGENT.length)]);
 		request.setHeader("Accept", "*/*");
 		request.setHeader("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3");
